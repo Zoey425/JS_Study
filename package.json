@@ -5,15 +5,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel index.html",
-    "bulid": "parcel build index.html"
+    "build": "parcel build index.html"   
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zoey425/JS_Study.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zoey425/JS_Study/issues"
+  },
+  "homepage": "https://github.com/Zoey425/JS_Study#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
-  },
-  "dependencies": {
-    "lodash": "4.17.20"
   }
 }
