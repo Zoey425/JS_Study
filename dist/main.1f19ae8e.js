@@ -127,10 +127,25 @@ exports.default = getType;
 function getType(data) {
   return Object.prototype.toString.call(data).slice(8, -1);
 }
+},{}],"getRandom.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getRandom;
+function getRandom() {
+  return Math.floor(Math.random() * 10);
+  // 반올림처리 하는 함수들
+  // ceil() : 소수점 자리의 숫자를 무조건 올리는 함수
+  // floor() : 소주점 아래를 내리는 함수 
+  // round() : 반올림 함수
+}
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
 var _getType = _interopRequireDefault(require("./getType"));
+var _getRandom = _interopRequireDefault(require("./getRandom"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 console.log(_typeof('Hello Ey')); // String 으로 출력
@@ -141,13 +156,121 @@ console.log(typeof undefined === "undefined" ? "undefined" : _typeof(undefined))
 console.log(_typeof(null)); // object
 console.log(_typeof({})); // object
 console.log(_typeof([])); // object
-
 console.log((0, _getType.default)(123)); //Number
 console.log((0, _getType.default)(false)); // Boolean
 console.log((0, _getType.default)(null)); // Null
 console.log((0, _getType.default)({})); // Object
 console.log((0, _getType.default)([])); // Array
-},{"./getType":"getType.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+//----------------------------
+// 산술연산자 (arithmetic operator)
+
+console.log(1 + 2);
+console.log(5 - 7);
+console.log(3 * 4);
+console.log(10 / 2);
+console.log(7 % 5);
+
+//----------------------------
+// 할당 연산자 (assignment operator)
+
+var u = 2; // = 가 할당연산자. 
+// const : 재 할당이 불가능
+
+var z = 2;
+//b = b + 1
+//b += 1
+//b *= 2
+//b /= 2
+console.log(z);
+
+//----------------------------
+// 비교 연산자 (comparison operator)
+
+var a = 1;
+var b = 7;
+console.log(a === b);
+function isEqual(x, y) {
+  return x === y;
+}
+console.log(isEqual(1, 1));
+console.log(isEqual(2, '2'));
+console.log(a !== b);
+console.log(a < b);
+console.log(a > b);
+console.log(a >= b); // 크거나 같다
+
+//----------------------------
+// 논리 연산자 (logical operator)
+
+var c = 1 === 123;
+var d = 'AB' === 'AB';
+var e = false;
+console.log(c);
+console.log(d);
+console.log(e);
+console.log('&&: ', c && e); // && false 값이 하나 이상이면 false
+console.log('||: ', c || d || e); // || true가 하나 이상이면 true
+console.log('!: ', !c); // ! 부정 연산자(특정한 데이터 반대값이 나타남)
+
+//----------------------------
+// 삼항 연산자 (ternary operator)
+
+var f = 1 < 2;
+if (a) {
+  console.log('참');
+} else {
+  console.log('거짓');
+}
+console.log(f ? '진실' : '거짓');
+
+//----------------------------
+// 조건문 (IF statement)
+
+var a1 = (0, _getRandom.default)();
+switch (a1) {
+  case 0:
+    console.log('a is 0');
+    break;
+  case 2:
+    console.log('a is 2');
+    break;
+  case 4:
+    console.log('a is 4');
+    break;
+  default:
+    console.log('rest...');
+}
+if (a1 === 0) {
+  console.log('a is 0');
+} else if (a1 === 2) {
+  console.log('a is 2');
+} else if (a1 === 4) {
+  console.log('a is 4');
+} else {
+  console.log('rest...');
+}
+
+//----------------------------
+// 반복문 (For statement)
+// for (시작조건; 종료조건; 변화조건) {}
+
+var ulEl = document.querySelector('ul');
+console.log(ulEl);
+var _loop = function _loop() {
+  var li = document.createElement('li');
+  li.textContent = "list-".concat(i + 1);
+  if ((i + 1) % 2 === 0) {
+    li.addEventListener('click', function () {
+      console.log(li.textContent);
+    });
+  }
+  ulEl.appendChild(li);
+};
+for (var i = 0; i < 5; i += 1) {
+  _loop();
+}
+},{"./getType":"getType.js","./getRandom":"getRandom.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
