@@ -270,6 +270,247 @@ var _loop = function _loop() {
 for (var i = 0; i < 5; i += 1) {
   _loop();
 }
+
+//----------------------------
+// 변수 유효범위 (Variable Scope)
+// var, let, const
+
+function scope() {
+  if (true) {
+    var m = 123;
+    console.log('in: ', m); // 변수 a의 유효 범위
+
+    var g = 234;
+    console.log('in: ', g);
+  }
+}
+scope();
+
+//----------------------------
+// 형 변환 (Type conversion)
+
+var hi = 1;
+var bye = '1';
+console.log(hi === bye); // 일치연산자
+console.log(hi == bye); // 형변환이 일어나서 데이터 값은 동등하다고 보여진다. 되도록 안쓰는걸 권장
+
+// Truthy(참 같은 값)
+// true, {}, [], 1, 2, 'false', -12, '3.14' ...
+
+// Falsy(거짓 같은 값)
+// false, '', null, undefined, 0, -0, NaN(Not a Number)
+
+if (undefined) {
+  console.log(123);
+}
+
+//----------------------------
+// 함수 복습
+
+function sum() {
+  // console.log(x)
+  // return x+y
+  console.log(arguments); // 매개 변수를 안넣고 사용 가능하지만, 배열로 나오게 된다. 
+  return arguments[0] + arguments[1];
+}
+var su = sum(1, 3);
+var di = sum(4, 12);
+console.log(su);
+console.log(su + di);
+
+//----------------------------
+// 화살표 함수
+// () => {} vs function () {}
+
+var double = function double(x) {
+  return x * 2;
+};
+console.log('double: ', double(7));
+
+// const doubleArrow = (x) => {
+//   return x * 2
+// }
+
+var doubleArrow = function doubleArrow(x) {
+  return {
+    name: 'EY'
+  };
+};
+console.log('doubleArrow: ', doubleArrow(7));
+
+//----------------------------
+// 즉시실행 함수
+// IIFE, Immediately-Invoked Function Expression
+
+var aa = 7;
+function doublE() {
+  console.log(aa * 2);
+}
+doublE();
+(function () {
+  console.log(aa * 2);
+})(); // 즉시 실행 함수 
+
+(function () {
+  console.log(aa * 2);
+})(); // 즉시 실행 함수 
+
+//----------------------------
+// 호이스팅(Hoisting)
+// 함수 선언부가 유효범위 최상단으로 끌어올려지는 현상
+
+var bb = 7;
+doubleE();
+function doubleE() {
+  console.log(bb * 2);
+}
+
+//----------------------------
+// 타이머 함수
+// setTimeout(함수, 시간) : 일정 시간 후 함수 실행
+// setInterval(함수, 시간) : 시간 간격마다 함수 실행
+// clearTimeout() :  설정된 Timeout 함수를 종료
+// clearInterval() : 설정된 Interval 함수를 종료
+
+//시간에 사용되는 단위는 ms 1초 = 1,000
+// setTimeout(function () {
+//   console.log('hi ey')
+// }, 3000)
+
+//화살표 함수 
+// const timer = setTimeout(() => {
+//   console.log('hi ey')
+// }, 3000)
+
+var timer = setInterval(function () {
+  console.log('hi ey');
+}, 3000);
+var h1El = document.querySelector('h1');
+h1El.addEventListener('click', function () {
+  clearTimeout(timer);
+});
+
+//----------------------------
+// 콜백 (Callback)
+// 함수의 인수로 사용되는 함수
+
+// setTimeout(함수, 시간)
+
+function timeout(cb) {
+  setTimeout(function () {
+    console.log('EUEUEU');
+    cb();
+  }, 3000);
+}
+timeout(function () {
+  console.log('Done');
+});
+
+//----------------------------
+// 자바스크립트 클래스
+
+var ey = {
+  firstName: 'Zoey',
+  lastName: 'Park',
+  getFulName: function getFulName() {
+    return "".concat(this.firstName, " ").concat(this.lastName);
+  }
+};
+console.log(ey.getFulName());
+var amy = {
+  firstName: 'Amy',
+  lastName: 'Clarke',
+  getFulName: function getFulName() {
+    return "".concat(this.firstName, " ").concat(this.lastName);
+  }
+};
+console.log(amy.getFulName());
+var neo = {
+  firstName: 'Neo',
+  lastName: 'Smith',
+  getFulName: function getFulName() {
+    return "".concat(this.firstName, " ").concat(this.lastName);
+  }
+};
+console.log(neo.getFulName());
+var heropy = {};
+// 리터럴
+// 객체 리터럴 {...} 을 사용하면 객체를 쉽게 만들 수 있습니다. 
+// 그런데 개발을 하다 보면 유사한 객체를 여러 개 만들어야 할 때가 생기곤 합니다. 
+// 복수의 사용자, 메뉴 내 다양한 아이템을 객체로 표현하려고 하는 경우가 그렇죠.
+
+// 'new' 연산자와 생성자 함수를 사용하면 유사한 객체 여러 개를 쉽게 만들 수 있습니다.
+
+function User(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+}
+User.prototype.getFullName = function () {
+  return "".concat(this.firstName, ", ").concat(this.lastName);
+};
+
+// 생성자 함수
+// 생성자 함수(constructor function)와 일반 함수에 기술적인 차이는 없습니다. 
+// 다만 생성자 함수는 아래 두 관례를 따릅니다.
+
+// 1. 함수 이름의 첫 글자는 대문자로 시작합니다.
+// 2. 반드시 'new' 연산자를 붙여 실행합니다.
+
+var son = new User('min', 'Son');
+var zoe = new User('zoe', 'Park');
+console.log(son.getFullName());
+console.log(zoe.getFullName());
+
+//----------------------------
+// this
+// 일반(Normal) 함수는 '호출 위치'에서 따라 this 정의!
+// 화살표(Arrow) 함수는 자신이 선언된 '함수 범위'에서 this 정의!
+
+var heropy2 = {
+  name: 'Heropy',
+  normal: function normal() {
+    console.log(this.name);
+  },
+  arrow: function arrow() {
+    // console.log(this.name)
+  }
+};
+heropy2.normal(); // Heropy
+heropy2.arrow(); // undefined
+
+var amy2 = {
+  name: 'Amy',
+  normal: heropy2.normal,
+  arrow: heropy2.arrow
+};
+amy2.normal(); // Amy
+amy2.arrow(); // undefined
+
+function User2(name) {
+  this.name = name;
+}
+User2.prototype.normaL = function () {
+  console.log(this.name);
+};
+
+// User2.prototype.arroW = () => {
+//   console.log(this.name)
+// }
+
+var mona = new User2('monamo');
+mona.normaL();
+// mona.arroW()
+
+var timer2 = {
+  name: 'monamoZ',
+  timeout: function timeout() {
+    var _this = this;
+    setTimeout(function () {
+      console.log(_this.name);
+    }, 2000);
+  }
+};
+timer2.timeout();
 },{"./getType":"getType.js","./getRandom":"getRandom.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -295,7 +536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56021" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62143" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
