@@ -146,7 +146,13 @@ function getRandom() {
 
 var _getType = _interopRequireDefault(require("./getType"));
 var _getRandom = _interopRequireDefault(require("./getRandom"));
+var _this2 = void 0;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 console.log(_typeof('Hello Ey')); // String 으로 출력
 console.log(_typeof(123)); // number으로 출력
@@ -511,6 +517,37 @@ var timer2 = {
   }
 };
 timer2.timeout();
+
+//----------------------------
+// ES6 Classes
+// ES6에 등장한 Classes 패턴 확인
+
+var zoepark = {
+  name: 'zoey',
+  normal: function normal() {
+    console.log(this.name);
+  },
+  arrow: function arrow() {
+    console.log(_this2.name);
+  }
+};
+zoepark.normal();
+zoepark.arrow();
+var User3 = /*#__PURE__*/function () {
+  function User3(first, last) {
+    _classCallCheck(this, User3);
+    //내부함수
+    this.firstName = first;
+    this.lastName = last;
+  }
+  _createClass(User3, [{
+    key: "getFullName",
+    value: function getFullName() {}
+  }]);
+  return User3;
+}();
+var mina = new User3('mina', 'kim');
+console.log(mina, getFullName());
 },{"./getType":"getType.js","./getRandom":"getRandom.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -536,7 +573,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62143" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56932" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

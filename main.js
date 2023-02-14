@@ -444,3 +444,40 @@ const timer2 = {
 }
 
 timer2.timeout()
+
+
+
+
+//----------------------------
+// ES6 Classes
+// ES6에 등장한 Classes 패턴 확인
+
+const zoepark = {
+  name:'zoey',
+  normal() { 
+    console.log(this.name)
+  },
+  arrow: () => {
+    console.log(this.name)
+  }
+}
+
+zoepark.normal()
+zoepark.arrow()
+
+
+class User3 {
+  constructor(first, last) { 
+    //내부함수
+    this.firstName = first
+    this.lastName = last
+    
+  }
+  getFullName(){
+        
+  }
+}
+
+
+const mina = new User3('mina', 'kim')
+console.log(mina,getFullName())
